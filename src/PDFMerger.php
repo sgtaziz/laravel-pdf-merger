@@ -5,7 +5,7 @@ namespace GrofGraf\LaravelPDFMerger;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
-use Str;
+use Illuminate\Support\Str;
 
 class PDFMerger {
     /**
