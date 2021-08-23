@@ -1,6 +1,6 @@
 {
     "name": "sgtaziz/laravel-pdf-merger",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "library",
     "description": "Package for Laravel that merges multiple PDFs into one.",
     "keywords": [
