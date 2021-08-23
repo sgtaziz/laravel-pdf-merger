@@ -3,7 +3,7 @@
 namespace GrofGraf\LaravelPDFMerger\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use GrofGraf\LaravelPDFMerger\LaravelPDFMerger;
+use GrofGraf\LaravelPDFMerger\PDFMerger;
 
 class PDFMergerServiceProvider extends ServiceProvider
 {
@@ -24,8 +24,8 @@ class PDFMergerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-      $this->app->singleton(LaravelPDFMerger::class, function ($app) {
-          return new LaravelPDFMerger($app['files']);
+      $this->app->singleton(PDFMerger::class, function ($app) {
+          return new PDFMerger($app['files']);
       });
     }
 }
