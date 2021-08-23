@@ -36,5 +36,5 @@
                 "Debugbar": "GrofGraf\\LaravelPDFMerger\\Facades\\PDFMerger"
             }
         }
-    },
+    }
 }
