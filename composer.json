@@ -33,7 +33,7 @@
                 "GrofGraf\\LaravelPDFMerger\\Providers\\PDFMergerServiceProvider"
             ],
             "aliases": {
-                "Debugbar": "GrofGraf\\LaravelPDFMerger\\Facades\\PDFMerger"
+                "PDFMerger": "GrofGraf\\LaravelPDFMerger\\Facades\\PDFMergerFacade"
             }
         }
     }
