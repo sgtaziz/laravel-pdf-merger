@@ -26,5 +26,15 @@
       "psr-4": {
         "GrofGraf\\LaravelPDFMerger\\": "src/"
       }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GrofGraf\\LaravelPDFMerger\\Providers\\PDFMergerServiceProvider"
+            ],
+            "aliases": {
+                "Debugbar": "GrofGraf\\LaravelPDFMerger\\Facades\\PDFMerger"
+            }
+        }
+    },
 }
