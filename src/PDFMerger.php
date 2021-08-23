@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class LaravelPDFMerger {
+class PDFMerger {
     /**
      * Access the filesystem on an oop base
      *
