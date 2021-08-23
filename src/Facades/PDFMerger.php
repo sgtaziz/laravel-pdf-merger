@@ -3,10 +3,10 @@
 namespace GrofGraf\LaravelPDFMerger\Facades;
 
 use \Illuminate\Support\Facades\Facade;
-use GrofGraf\LaravelPDFMerger\LaravelPDFMerger;
+use GrofGraf\LaravelPDFMerger\PDFMerger;
 
-class PDFMerger extends Facade {
+class PDFMergerFacade extends Facade {
 
-  protected static function getFacadeAccessor() { return LaravelPDFMerger::class; }
+  protected static function getFacadeAccessor() { return PDFMerger::class; }
 
 }
