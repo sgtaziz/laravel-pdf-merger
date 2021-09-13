@@ -161,7 +161,7 @@ class PDFMerger {
       $this->merge($orientation, true);
     }
 
-    public function merge($orientation = 'P', $duplex = false) {
+    public function merge($orientation = 'A', $duplex = false) {
       if ($this->files->count() == 0) {
           throw new \Exception("No PDFs to merge.");
       }
@@ -175,7 +175,7 @@ class PDFMerger {
           for ($i = 1; $i <= $count; $i++) {
             $template   = $fpdi->importPage($i);
             $size       = $fpdi->getTemplateSize($template);
-            $fpdi->AddPage($file['orientation'], [$size['width'], $size['height']]);
+            $fpdi->AddPage(($file['orientation']=='A'?($size['height'] > $size['width'] ? 'P' : 'L'):$file['orientation']), [$size['width'], $size['height']]);
             $fpdi->useTemplate($template);
           }
         }else {
@@ -185,12 +185,12 @@ class PDFMerger {
               throw new \Exception("Could not load page '$page' in PDF '".$file['name']."'. Check that the page exists.");
             }
             $size = $fpdi->getTemplateSize($template);
-            $fpdi->AddPage($file['orientation'], [$size['width'], $size['height']]);
+            $fpdi->AddPage(($file['orientation']=='A'?($size['height'] > $size['width'] ? 'P' : 'L'):$file['orientation']), [$size['width'], $size['height']]);
             $fpdi->useTemplate($template);
           }
         }
         if ($duplex && $pages % 2 && $index < (count($files) - 1)) {
-          $fpdi->AddPage($file['orientation'], [$size['width'], $size['height']]);
+            $fpdi->AddPage(($file['orientation']=='A'?($size['height'] > $size['width'] ? 'P' : 'L'):$file['orientation']), [$size['width'], $size['height']]);
         }
       }
     }
