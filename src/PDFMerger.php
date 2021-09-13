@@ -39,6 +39,24 @@ class PDFMerger {
      */
     protected $fileName = 'undefined.pdf';
     /**
+     * The path to the stamp
+     *
+     * @var string
+     */
+    protected $stamp = null;
+    /**
+     * The x position of the stamp
+     *
+     * @var string
+     */
+    protected $stampX = null;
+    /**
+     * The y position of the stamp
+     *
+     * @var string
+     */
+    protected $stampY = null;
+    /**
      * Construct and initialize a new instance
      * @param Filesystem $Filesystem
      */
@@ -110,6 +128,18 @@ class PDFMerger {
         return $this;
     }
     /**
+     * Set the generated PDF fileName
+     * @param string $fileName
+     *
+     * @return string
+     */
+    public function setStamp($path, $x = null, $y = null) {
+        $this->stamp = $path;
+        $this->stampX = $x;
+        $this->stampY = $y;
+        return $this;
+    }
+    /**
      * Add a PDF for inclusion in the merge with a binary string. Pages should be formatted: 1,3,6, 12-16.
      * @param string $string
      * @param mixed $pages
@@ -177,6 +207,9 @@ class PDFMerger {
             $size       = $fpdi->getTemplateSize($template);
             $fpdi->AddPage(($file['orientation']=='A'?($size['height'] > $size['width'] ? 'P' : 'L'):$file['orientation']), [$size['width'], $size['height']]);
             $fpdi->useTemplate($template);
+            if ($this->stamp) {
+                $fpdi->Image($this->stamp, $this->stampX, $this->stampY);
+            }
           }
         }else {
           $pages = count($file['pages']);
@@ -187,10 +220,16 @@ class PDFMerger {
             $size = $fpdi->getTemplateSize($template);
             $fpdi->AddPage(($file['orientation']=='A'?($size['height'] > $size['width'] ? 'P' : 'L'):$file['orientation']), [$size['width'], $size['height']]);
             $fpdi->useTemplate($template);
+            if ($this->stamp) {
+                $fpdi->Image($this->stamp, $this->stampX, $this->stampY);
+            }
           }
         }
         if ($duplex && $pages % 2 && $index < (count($files) - 1)) {
             $fpdi->AddPage(($file['orientation']=='A'?($size['height'] > $size['width'] ? 'P' : 'L'):$file['orientation']), [$size['width'], $size['height']]);
+            if ($this->stamp) {
+                $fpdi->Image($this->stamp, $this->stampX, $this->stampY);
+            }
         }
       }
     }
